@@ -8,9 +8,12 @@ import com.sun.americanroom.data.model.City
 
 class CityAdapter : RecyclerView.Adapter<ItemCityViewHolder>() {
 
-    val listCity = mutableListOf<City>()
+    private val listCity = mutableListOf<City>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemCityViewHolder =
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ItemCityViewHolder =
         ItemCityViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_top, parent, false)
         )
@@ -22,11 +25,10 @@ class CityAdapter : RecyclerView.Adapter<ItemCityViewHolder>() {
     }
 
     fun addData(listCity: MutableList<City>) {
-        listCity.let {
+        listCity?.let {
             this.listCity.clear()
             this.listCity.addAll(it)
             notifyDataSetChanged()
-            it.clear()
         }
     }
 }

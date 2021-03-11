@@ -8,14 +8,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginBottom="@dimen/dp_12">
 
         <TextView
             android:id="@+id/textViewPickAState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_22"
-            android:layout_marginTop="@dimen/dp_84"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/pick_a_state"
             android:textColor="@color/color_black"

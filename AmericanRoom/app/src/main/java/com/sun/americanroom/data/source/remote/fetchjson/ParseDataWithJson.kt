@@ -3,6 +3,7 @@ package com.sun.americanroom.data.source.remote.fetchjson
 import com.sun.americanroom.data.model.CityEntry
 import com.sun.americanroom.utils.Constant
 import com.sun.americanroom.utils.KeyEntity
+import com.sun.americanroom.utils.TopRoomEntry
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -42,6 +43,12 @@ class ParseDataWithJson {
                         keyEntity
                     )
                 }
+                KeyEntity.TOP_ROOM -> {
+                    parseJsonToList(
+                        jsonObjectContent?.getJSONArray(TopRoomEntry.LIST),
+                        keyEntity
+                    )
+                }
                 else -> null
             }
         } catch (e: Exception) {
@@ -55,20 +62,35 @@ class ParseDataWithJson {
             KeyEntity.CITY -> {
                 parseJsonToModel.parseJsonToCityFromTop(jsonObject)
             }
+            KeyEntity.TOP_ROOM -> {
+                parseJsonToModel.parseJsonToTopRoom(jsonObject)
+            }
             else -> null
         }
     }
 
     private fun parseJsonToList(jsonArray: JSONArray?, keyEntity: String): Any {
         val data = mutableListOf<Any?>()
-        for (i in 0 until (jsonArray?.length() ?: 0)) {
-            val jsonObject = jsonArray?.getJSONObject(i)
-            data.add(parseJsonToObject(jsonObject, keyEntity))
+        when (keyEntity) {
+            KeyEntity.CITY -> {
+                for (i in 0 until (jsonArray?.length() ?: 0)) {
+                    val jsonObject = jsonArray?.getJSONObject(i)
+                    data.add(parseJsonToObject(jsonObject, keyEntity))
+                }
+            }
+            KeyEntity.TOP_ROOM -> {
+                for (i in 0 until (jsonArray?.length() ?: 0)) {
+                    val jsonObject = jsonArray?.getJSONObject(i)
+                    if (data.size.equals(NUMBER_OF_ROOM)) return data
+                    data.add(parseJsonToObject(jsonObject, keyEntity))
+                }
+            }
         }
         return data
     }
 
     companion object {
+        private const val NUMBER_OF_ROOM = 5
         private const val TIME_OUT = 20000
         private const val METHOD_GET = "GET"
     }
