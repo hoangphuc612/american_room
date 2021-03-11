@@ -1,6 +1,7 @@
 package com.sun.americanroom.data.source.repository
 
 import com.sun.americanroom.data.model.City
+import com.sun.americanroom.data.model.TopRoom
 import com.sun.americanroom.data.source.RoomDataSource
 import com.sun.americanroom.data.source.local.RoomLocalDataSource
 import com.sun.americanroom.data.source.remote.OnFetchDataJsonListener
@@ -16,6 +17,14 @@ class RoomRepository private constructor(
         state: String
     ) {
         remote.getCity(listener, state)
+    }
+
+    fun getTopRoom(
+        listener: OnFetchDataJsonListener<MutableList<TopRoom>>,
+        state: String,
+        city: String
+    ) {
+        remote.getTopRoom(listener, state, city)
     }
 
     companion object {

@@ -10,8 +10,11 @@ object Constant {
     const val TREND_CITY = "trends/cities"
     const val STATE = "?state="
     const val PAGE_DEFAULT = "&page=1"
-    const val DEFAULT_STATE = "CA"
+    const val TOP_REVIEW = "airbnb-property/top-reviewed"
+    const val LINK_NAME = "%20"
     const val NUMBER_ITEM = "&items=5"
+    const val NULL = "null"
+    const val CITY = "&city="
 }
 
 object StateCode {
@@ -32,4 +35,5 @@ object StateName {
 
 object KeyEntity {
     const val CITY = "city"
+    const val TOP_ROOM = "top_room"
 }

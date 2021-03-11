@@ -14,22 +14,21 @@ import com.sun.americanroom.data.source.remote.RoomRemoteDataSource
 import com.sun.americanroom.data.source.repository.RoomRepository
 import com.sun.americanroom.screen.top.cityadapter.CityAdapter
 import com.sun.americanroom.utils.Constant
-import com.sun.americanroom.utils.StateCode
 import com.sun.americanroom.utils.StateName
 import kotlinx.android.synthetic.main.fragment_top_room.*
 
 class TopRoomFragment : Fragment(),
     AdapterView.OnItemSelectedListener,
-    TopContract.View
-{
+    TopContract.View {
 
     private val cityAdapter by lazy { CityAdapter() }
     private val topPresenter: TopContract.Presenter by lazy {
         TopPresenter(
             RoomRepository.getRepository(
-            RoomLocalDataSource.instance,
-            RoomRemoteDataSource.instance
-        ))
+                RoomLocalDataSource.instance,
+                RoomRemoteDataSource.instance
+            )
+        )
     }
 
     override fun onCreateView(
@@ -85,7 +84,6 @@ class TopRoomFragment : Fragment(),
     private fun initPresenter() {
         topPresenter.apply {
             setView(this@TopRoomFragment)
-            getCity(Constant.DEFAULT_STATE)
         }
     }
 

@@ -26,7 +26,6 @@ class CityAdapter : RecyclerView.Adapter<ItemCityViewHolder>() {
             this.listCity.clear()
             this.listCity.addAll(it)
             notifyDataSetChanged()
-            it.clear()
         }
     }
 }
